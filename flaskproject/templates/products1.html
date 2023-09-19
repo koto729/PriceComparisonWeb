@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product List</title>
+    <!-- Include external CSS file -->
+    <link rel="stylesheet" href="/static/style_v2.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+   <header>
+      <h1>Price Comparison Website</h1>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+      </ul>
+    </nav>
+    <h1>{{ product1[0][0] }}</h1>
+   <a onclick="toggleTable()" class="button">Price Alerts</a>
+        <table id="table" class="hidden">
+          <tr>
+            <td>
+              <form method="POST">
+                <div class="form-group">
+                  <label>Email:</label>
+                  <input type="text" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                  <label>price:</label>
+                  <input type="number" id="price" name="price" required>
+                </div>
+                <input type="submit" value="Set price alert">
+              </form>
+            </td>
+          </tr>
+        </table>
+
+    <h2>Recommend Rank</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Name</th>
+                <th>Price $</th>
+            </tr>
+        </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>{{rank1[0]}}</td>
+              <td>{{rank1[1]}}</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>{{rank2[0]}}</td>
+              <td>{{rank2[1]}}</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>{{rank3[0]}}</td>
+              <td>{{rank3[1]}}</td>
+            </tr>
+          </tbody>
+    </table>
+    <h2>Price tendency</h2>
+    <canvas id="priceChart"></canvas>
+    <canvas id="lineChart" width="100" height="50"></canvas>
+    <script>
+    var date = {{ date|tojson }};
+    var product1 = {{ product1|tojson }};
+    var product2 = {{ product2|tojson }};
+    var product3= {{ product3|tojson }};
+
+    // Extract dates and prices from product data
+    var dates = date.map(function(product) {
+      return product[0];
+    });
+    var prices1 = product1.map(function(product) {
+      return product[1];
+    });
+
+    var prices2 = product2.map(function(product) {
+      return product[1];
+    });
+
+    var prices3 = product3.map(function(product) {
+      return product[1];
+    });
+
+    // Create line chart using Chart.js
+    var ctx = document.getElementById('lineChart').getContext('2d');
+    var lineChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: dates,
+        datasets: [
+            {
+                label: 'ZTORE',
+                data: prices1,
+                fill: false,
+                borderColor: 'red',
+                tension: 0.1
+            },
+            {
+                label: 'HKTVmall',
+                data: prices2,
+                fill: false,
+                borderColor: 'green',
+                tension: 0.1
+            },
+            {
+                label: 'PARKNSHOP',
+                data: prices3,
+                fill: false,
+                borderColor: 'blue',
+                tension: 0.1
+            }
+        ]
+      },
+      options: {
+        scales: {
+          x: {
+            display: true,
+            title: {
+              display: true,
+              text: 'Date'
+            }
+          },
+          y: {
+            display: true,
+            title: {
+              display: true,
+              text: 'Price'
+            }
+          }
+        }
+      }
+    });
+  </script>
+    P.S:When the price is zero, the item will be sold.
+    <script>
+        function toggleTable() {
+          var table = document.getElementById("table");
+          table.classList.toggle("hidden");
+        }
+        function filterProducts(type_id) {
+            window.location.href = '/products?type_id=' + type_id;
+        }
+    </script>
+</body>
+</html>

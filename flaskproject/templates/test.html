@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>设置价格提醒</title>
+  <style>
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 5px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+    }
+
+    input[type="submit"] {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* 隐藏表格样式 */
+    .hidden {
+      display: none;
+    }
+  </style>
+  <script>
+    function toggleTable() {
+      var table = document.getElementById("table");
+      table.classList.toggle("hidden");
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h2>设置价格提醒</h2>
+    <button onclick="toggleTable()">填写价格提醒</button>
+    <table id="table" class="hidden">
+      <tr>
+        <td>
+          <form>
+            <div class="form-group">
+              <label for="product">产品名称:</label>
+              <input type="text" id="product" name="product" required>
+            </div>
+            <div class="form-group">
+              <label for="price">价格:</label>
+              <input type="text" id="price" name="price" required>
+            </div>
+            <div class="form-group">
+              <label for="email">电子邮件:</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <input type="submit" value="提交">
+          </form>
+        </td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>
+
+
+

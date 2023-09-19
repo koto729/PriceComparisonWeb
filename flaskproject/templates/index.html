@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shop Comparison</title>
+    <link rel="stylesheet" href="/static/style_v2.css">
+  </head>
+  <body>
+    <header>
+      <h1>Price Comparison Website</h1>
+    </header>
+    <nav>
+        <div>
+          <ul>
+            <li><a href="/">Home</a></li>
+          </ul>
+        </div>
+    </nav>
+    <main>
+      <section>
+        <h2>消毒藥水</h2>
+        <img src="/static/picture/ANTISEPTIC_LIQUID.jpg" width="250" height="260">
+        <a onclick="filterProducts(1)" class="button">compare</a>
+      </section>
+      <section>
+        <h2>洗潔精</h2>
+        <img src="/static/picture/洗潔精.jpg" width="250" height="260">
+        <a onclick="filterProducts(2)" class="button">compare</a>
+      </section>
+      <section>
+        <h2>花生油</h2>
+        <img src="/static/picture/花生油.jpg" width="250" height="260">
+        <a onclick="filterProducts(3)" class="button">compare</a>
+      </section>
+      <section>
+        <h2>米</h2>
+        <img src="/static/picture/米.jpg" width="250" height="260">
+        <a onclick="filterProducts(4)" class="button">compare</a>
+      </section>
+      <section>
+        <h2>生抽</h2>
+        <img src="/static/picture/生抽.jpg" width="250" height="260">
+        <a onclick="filterProducts(5)" class="button">compare</a>
+      </section>
+      <section>
+        <h2>衛生紙</h2>
+        <img src="/static/picture/衛生紙.jpg" width="250" height="260">
+        <a onclick="filterProducts(6)" class="button">compare</a>
+      </section>
+      <section>
+        <h2>洗衣液</h2>
+        <img src="/static/picture/洗衣液.jpg" width="250" height="260">
+        <a onclick="filterProducts(7)" class="button">compare</a>
+      </section>
+
+    </main>
+    <footer>
+      <p>&copy; 2023 Shop Comparison Page</p>
+    </footer>
+    <script>
+        // Function to filter products by type_id
+        function filterProducts(type_id) {
+            window.location.href = '/products?type_id=' + type_id;
+        }
+    </script>
+  </body>
+</html>
